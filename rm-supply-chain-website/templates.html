@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Templates & Resources - RM SCM</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: {
+              900: '#1e3a5f',
+              800: '#24466f',
+              700: '#2a527f',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Template card transitions */
+    .template-card {
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+    .template-card.active {
+      background-color: #f8fafc;
+      border-left: 3px solid #1e3a5f;
+    }
+    .template-card:not(.active) {
+      border-left: 3px solid transparent;
+    }
+    /* PDF viewer fade */
+    #pdf-viewer {
+      transition: opacity 0.2s ease;
+    }
+    /* Mobile accordion */
+    .mobile-pdf-container {
+      transition: max-height 0.3s ease, opacity 0.3s ease;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+    }
+    .mobile-pdf-container.open {
+      max-height: 600px;
+      opacity: 1;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800 font-sans antialiased">
+
+  <!-- Navigation -->
+  <nav id="main-nav" class="bg-navy-900 text-white sticky top-0 z-50 transition-shadow duration-300">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 lg:h-20">
+
+        <!-- Logo -->
+        <a href="index.html" class="text-2xl font-bold tracking-tight text-white">
+          RM <span class="font-light">SCM</span>
+        </a>
+
+        <!-- Desktop Nav -->
+        <div class="hidden md:flex items-center space-x-10">
+          <a href="index.html" class="nav-link text-gray-300 hover:text-white text-sm tracking-wide transition-colors duration-200">About</a>
+          <a href="services.html" class="nav-link text-gray-300 hover:text-white text-sm tracking-wide transition-colors duration-200">Services</a>
+          <a href="templates.html" class="nav-link text-white font-medium text-sm tracking-wide border-b-2 border-white pb-0.5">Templates</a>
+          <a href="articles.html" class="nav-link text-gray-300 hover:text-white text-sm tracking-wide transition-colors duration-200">Articles</a>
+          <a href="https://www.linkedin.com/in/ray-mancham-b8a197109/" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white transition-colors duration-200" aria-label="LinkedIn">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="menu-button" class="md:hidden text-white focus:outline-none" aria-expanded="false" aria-label="Toggle menu">
+          <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden border-t border-navy-800">
+      <div class="px-6 py-4 space-y-1">
+        <a href="index.html" class="nav-link block py-3 text-gray-300 hover:text-white text-sm tracking-wide transition-colors">About</a>
+        <a href="services.html" class="nav-link block py-3 text-gray-300 hover:text-white text-sm tracking-wide transition-colors">Services</a>
+        <a href="templates.html" class="nav-link block py-3 text-white font-medium text-sm tracking-wide">Templates</a>
+        <a href="articles.html" class="nav-link block py-3 text-gray-300 hover:text-white text-sm tracking-wide transition-colors">Articles</a>
+        <a href="https://www.linkedin.com/in/ray-mancham-b8a197109/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 py-3 text-gray-300 hover:text-white text-sm tracking-wide transition-colors">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="bg-navy-900 text-white py-16 lg:py-20 px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <p class="text-sm font-semibold tracking-widest uppercase text-gray-400 mb-4">Resources</p>
+      <h1 class="text-4xl md:text-5xl font-bold mb-6">
+        Templates <span class="font-light italic">&amp; Resources</span>
+      </h1>
+      <div class="w-16 h-0.5 bg-white mb-6"></div>
+      <p class="text-lg text-gray-300 max-w-2xl">Practical frameworks for supply chain operations.</p>
+    </div>
+  </section>
+
+  <!-- ===================== DESKTOP: Two-Column Layout ===================== -->
+  <section class="hidden lg:block py-12 px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto flex gap-8" style="min-height: 700px;">
+
+      <!-- Left Sidebar (30%) -->
+      <aside class="w-[30%] flex-shrink-0">
+        <div class="sticky top-24">
+          <p class="text-xs font-semibold tracking-widest uppercase text-gray-400 mb-6">Select a template</p>
+          <div class="space-y-1" id="desktop-template-list">
+
+            <button onclick="loadTemplate(0, 'desktop')"
+                    class="template-card desktop-card active w-full text-left px-5 py-4 rounded-r-lg cursor-pointer hover:bg-gray-50">
+              <div class="flex items-center gap-3 mb-1">
+                <span class="badge-pdf text-[10px] font-semibold px-2 py-0.5 rounded-full flex-shrink-0">PDF</span>
+                <h3 class="text-sm font-semibold text-navy-900 truncate">S&amp;OP Framework Guide</h3>
+              </div>
+              <p class="text-xs text-gray-500 ml-10">Collaborative business planning</p>
+            </button>
+
+            <button onclick="loadTemplate(1, 'desktop')"
+                    class="template-card desktop-card w-full text-left px-5 py-4 rounded-r-lg cursor-pointer hover:bg-gray-50">
+              <div class="flex items-center gap-3 mb-1">
+                <span class="badge-pdf text-[10px] font-semibold px-2 py-0.5 rounded-full flex-shrink-0">PDF</span>
+                <h3 class="text-sm font-semibold text-navy-900 truncate">Employee Empowerment in Supply Chain</h3>
+              </div>
+              <p class="text-xs text-gray-500 ml-10">Building autonomous teams</p>
+            </button>
+
+            <button onclick="loadTemplate(2, 'desktop')"
+                    class="template-card desktop-card w-full text-left px-5 py-4 rounded-r-lg cursor-pointer hover:bg-gray-50">
+              <div class="flex items-center gap-3 mb-1">
+                <span class="badge-pdf text-[10px] font-semibold px-2 py-0.5 rounded-full flex-shrink-0">PDF</span>
+                <h3 class="text-sm font-semibold text-navy-900 truncate">KPI Selection &amp; Implementation</h3>
+              </div>
+              <p class="text-xs text-gray-500 ml-10">Measuring what matters</p>
+            </button>
+
+            <button onclick="loadTemplate(3, 'desktop')"
+                    class="template-card desktop-card w-full text-left px-5 py-4 rounded-r-lg cursor-pointer hover:bg-gray-50">
+              <div class="flex items-center gap-3 mb-1">
+                <span class="badge-pdf text-[10px] font-semibold px-2 py-0.5 rounded-full flex-shrink-0">PDF</span>
+                <h3 class="text-sm font-semibold text-navy-900 truncate">RACI Responsibility Matrix</h3>
+              </div>
+              <p class="text-xs text-gray-500 ml-10">Role clarity framework</p>
+            </button>
+
+            <button onclick="loadTemplate(4, 'desktop')"
+                    class="template-card desktop-card w-full text-left px-5 py-4 rounded-r-lg cursor-pointer hover:bg-gray-50">
+              <div class="flex items-center gap-3 mb-1">
+                <span class="badge-pdf text-[10px] font-semibold px-2 py-0.5 rounded-full flex-shrink-0">PDF</span>
+                <h3 class="text-sm font-semibold text-navy-900 truncate">Swimlane Process Mapping</h3>
+              </div>
+              <p class="text-xs text-gray-500 ml-10">Cross-functional workflows</p>
+            </button>
+
+          </div>
+        </div>
+      </aside>
+
+      <!-- Right Content Area (70%) -->
+      <div class="flex-1 border border-gray-200 rounded-lg overflow-hidden flex flex-col">
+
+        <!-- Viewer Toolbar -->
+        <div id="desktop-toolbar" class="bg-gray-50 border-b border-gray-200 px-6 py-3 flex items-center justify-between">
+          <p id="desktop-viewer-title" class="text-sm font-semibold text-navy-900">S&amp;OP Framework Guide</p>
+          <div class="flex items-center gap-3">
+            <a id="desktop-open-tab" href="downloads/S_OP_pptx.pdf" target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center gap-1.5 text-xs text-gray-500 hover:text-navy-900 transition-colors">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+              </svg>
+              Open in new tab
+            </a>
+            <a id="desktop-download" href="downloads/S_OP_pptx.pdf" download
+               class="inline-flex items-center gap-1.5 text-xs text-white bg-navy-900 hover:bg-navy-800 px-3 py-1.5 rounded transition-colors">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+              </svg>
+              Download
+            </a>
+          </div>
+        </div>
+
+        <!-- PDF Viewer -->
+        <div class="flex-1 bg-gray-100 relative">
+          <iframe id="pdf-viewer" src="downloads/S_OP_pptx.pdf" class="w-full h-full absolute inset-0" style="min-height: 620px;"></iframe>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MOBILE: Accordion Layout ===================== -->
+  <section class="lg:hidden py-10 px-6">
+    <div class="max-w-2xl mx-auto">
+      <p class="text-xs font-semibold tracking-widest uppercase text-gray-400 mb-6">Select a template</p>
+      <div class="space-y-3" id="mobile-template-list">
+
+        <!-- Mobile Card 1 -->
+        <div class="border border-gray-200 rounded-lg overflow-hidden">
+          <button onclick="toggleMobileTemplate(0)"
+                  class="template-card mobile-card w-full text-left px-5 py-4 flex items-center justify-between" data-index="0">
+            <div class="flex items-center gap-3">
+              <span class="badge-pdf text-[10px] font-semibold px-2 py-0.5 rounded-full flex-shrink-0">PDF</span>
+              <div>
+                <h3 class="text-sm font-semibold text-navy-900">S&amp;OP Framework Guide</h3>
+                <p class="text-xs text-gray-500">Collaborative business planning</p>
+              </div>
+            </div>
+            <svg class="mobile-chevron w-5 h-5 text-gray-400 flex-shrink-0 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="mobile-pdf-container" data-index="0">
+            <div class="px-5 pb-4">
+              <div class="bg-gray-100 rounded border border-gray-200 overflow-hidden mb-3" style="height: 500px;">
+                <iframe class="mobile-pdf-frame w-full h-full" data-src="downloads/S_OP_pptx.pdf"></iframe>
+              </div>
+              <div class="flex items-center gap-3">
+                <a href="downloads/S_OP_pptx.pdf" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center gap-1.5 text-xs text-gray-500 hover:text-navy-900 transition-colors">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                  </svg>
+                  Open in new tab
+                </a>
+                <a href="downloads/S_OP_pptx.pdf" download
+                   class="inline-flex items-center gap-1.5 text-xs text-white bg-navy-900 hover:bg-navy-800 px-3 py-1.5 rounded transition-colors">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                  </svg>
+                  Download
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Card 2 -->
+        <div class="border border-gray-200 rounded-lg overflow-hidden">
+          <button onclick="toggleMobileTemplate(1)"
+                  class="template-card mobile-card w-full text-left px-5 py-4 flex items-center justify-between" data-index="1">
+            <div class="flex items-center gap-3">
+              <span class="badge-pdf text-[10px] font-semibold px-2 py-0.5 rounded-full flex-shrink-0">PDF</span>
+              <div>
+                <h3 class="text-sm font-semibold text-navy-900">Employee Empowerment in Supply Chain</h3>
+                <p class="text-xs text-gray-500">Building autonomous teams</p>
+              </div>
+            </div>
+            <svg class="mobile-chevron w-5 h-5 text-gray-400 flex-shrink-0 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="mobile-pdf-container" data-index="1">
+            <div class="px-5 pb-4">
+              <div class="bg-gray-100 rounded border border-gray-200 overflow-hidden mb-3" style="height: 500px;">
+                <iframe class="mobile-pdf-frame w-full h-full" data-src="downloads/Employee_Empowerment.pdf"></iframe>
+              </div>
+              <div class="flex items-center gap-3">
+                <a href="downloads/Employee_Empowerment.pdf" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center gap-1.5 text-xs text-gray-500 hover:text-navy-900 transition-colors">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                  </svg>
+                  Open in new tab
+                </a>
+                <a href="downloads/Employee_Empowerment.pdf" download
+                   class="inline-flex items-center gap-1.5 text-xs text-white bg-navy-900 hover:bg-navy-800 px-3 py-1.5 rounded transition-colors">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                  </svg>
+                  Download
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Card 3 -->
+        <div class="border border-gray-200 rounded-lg overflow-hidden">
+          <button onclick="toggleMobileTemplate(2)"
+                  class="template-card mobile-card w-full text-left px-5 py-4 flex items-center justify-between" data-index="2">
+            <div class="flex items-center gap-3">
+              <span class="badge-pdf text-[10px] font-semibold px-2 py-0.5 rounded-full flex-shrink-0">PDF</span>
+              <div>
+                <h3 class="text-sm font-semibold text-navy-900">KPI Selection &amp; Implementation</h3>
+                <p class="text-xs text-gray-500">Measuring what matters</p>
+              </div>
+            </div>
+            <svg class="mobile-chevron w-5 h-5 text-gray-400 flex-shrink-0 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="mobile-pdf-container" data-index="2">
+            <div class="px-5 pb-4">
+              <div class="bg-gray-100 rounded border border-gray-200 overflow-hidden mb-3" style="height: 500px;">
+                <iframe class="mobile-pdf-frame w-full h-full" data-src="downloads/KPIs.pdf"></iframe>
+              </div>
+              <div class="flex items-center gap-3">
+                <a href="downloads/KPIs.pdf" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center gap-1.5 text-xs text-gray-500 hover:text-navy-900 transition-colors">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                  </svg>
+                  Open in new tab
+                </a>
+                <a href="downloads/KPIs.pdf" download
+                   class="inline-flex items-center gap-1.5 text-xs text-white bg-navy-900 hover:bg-navy-800 px-3 py-1.5 rounded transition-colors">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                  </svg>
+                  Download
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Card 4 -->
+        <div class="border border-gray-200 rounded-lg overflow-hidden">
+          <button onclick="toggleMobileTemplate(3)"
+                  class="template-card mobile-card w-full text-left px-5 py-4 flex items-center justify-between" data-index="3">
+            <div class="flex items-center gap-3">
+              <span class="badge-pdf text-[10px] font-semibold px-2 py-0.5 rounded-full flex-shrink-0">PDF</span>
+              <div>
+                <h3 class="text-sm font-semibold text-navy-900">RACI Responsibility Matrix</h3>
+                <p class="text-xs text-gray-500">Role clarity framework</p>
+              </div>
+            </div>
+            <svg class="mobile-chevron w-5 h-5 text-gray-400 flex-shrink-0 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="mobile-pdf-container" data-index="3">
+            <div class="px-5 pb-4">
+              <div class="bg-gray-100 rounded border border-gray-200 overflow-hidden mb-3" style="height: 500px;">
+                <iframe class="mobile-pdf-frame w-full h-full" data-src="downloads/RACI_doc.pdf"></iframe>
+              </div>
+              <div class="flex items-center gap-3">
+                <a href="downloads/RACI_doc.pdf" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center gap-1.5 text-xs text-gray-500 hover:text-navy-900 transition-colors">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                  </svg>
+                  Open in new tab
+                </a>
+                <a href="downloads/RACI_doc.pdf" download
+                   class="inline-flex items-center gap-1.5 text-xs text-white bg-navy-900 hover:bg-navy-800 px-3 py-1.5 rounded transition-colors">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                  </svg>
+                  Download
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Card 5 -->
+        <div class="border border-gray-200 rounded-lg overflow-hidden">
+          <button onclick="toggleMobileTemplate(4)"
+                  class="template-card mobile-card w-full text-left px-5 py-4 flex items-center justify-between" data-index="4">
+            <div class="flex items-center gap-3">
+              <span class="badge-pdf text-[10px] font-semibold px-2 py-0.5 rounded-full flex-shrink-0">PDF</span>
+              <div>
+                <h3 class="text-sm font-semibold text-navy-900">Swimlane Process Mapping</h3>
+                <p class="text-xs text-gray-500">Cross-functional workflows</p>
+              </div>
+            </div>
+            <svg class="mobile-chevron w-5 h-5 text-gray-400 flex-shrink-0 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="mobile-pdf-container" data-index="4">
+            <div class="px-5 pb-4">
+              <div class="bg-gray-100 rounded border border-gray-200 overflow-hidden mb-3" style="height: 500px;">
+                <iframe class="mobile-pdf-frame w-full h-full" data-src="downloads/Swimlane_Diagrams.pdf"></iframe>
+              </div>
+              <div class="flex items-center gap-3">
+                <a href="downloads/Swimlane_Diagrams.pdf" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center gap-1.5 text-xs text-gray-500 hover:text-navy-900 transition-colors">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                  </svg>
+                  Open in new tab
+                </a>
+                <a href="downloads/Swimlane_Diagrams.pdf" download
+                   class="inline-flex items-center gap-1.5 text-xs text-white bg-navy-900 hover:bg-navy-800 px-3 py-1.5 rounded transition-colors">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                  </svg>
+                  Download
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-navy-900 text-white">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+      <div class="grid md:grid-cols-3 gap-12 items-start">
+
+        <!-- Brand -->
+        <div>
+          <p class="text-2xl font-bold tracking-tight mb-3">RM <span class="font-light">SCM</span></p>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Independent supply chain management consulting
+          </p>
+        </div>
+
+        <!-- Links -->
+        <div>
+          <p class="text-xs font-semibold tracking-widest uppercase text-gray-400 mb-4">Navigate</p>
+          <ul class="space-y-3 text-sm">
+            <li><a href="index.html" class="text-gray-300 hover:text-white transition-colors duration-200">About</a></li>
+            <li><a href="services.html" class="text-gray-300 hover:text-white transition-colors duration-200">Services</a></li>
+            <li><a href="templates.html" class="text-gray-300 hover:text-white transition-colors duration-200">Templates</a></li>
+            <li><a href="articles.html" class="text-gray-300 hover:text-white transition-colors duration-200">Articles</a></li>
+          </ul>
+        </div>
+
+        <!-- Connect -->
+        <div>
+          <p class="text-xs font-semibold tracking-widest uppercase text-gray-400 mb-4">Connect</p>
+          <a href="https://www.linkedin.com/in/ray-mancham-b8a197109/" target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-2 text-gray-300 hover:text-white transition-colors duration-200 text-sm mb-4">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+            LinkedIn
+          </a>
+          <p class="text-gray-500 text-sm italic">Newsletter coming soon</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Copyright Bar -->
+    <div class="border-t border-navy-800">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8 py-6">
+        <p class="text-gray-500 text-xs tracking-wide">&copy; 2026 RM Supply Chain Management. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Template data
+    const templates = [
+      { title: 'S&OP Framework Guide', file: 'downloads/S_OP_pptx.pdf' },
+      { title: 'Employee Empowerment in Supply Chain', file: 'downloads/Employee_Empowerment.pdf' },
+      { title: 'KPI Selection & Implementation', file: 'downloads/KPIs.pdf' },
+      { title: 'RACI Responsibility Matrix', file: 'downloads/RACI_doc.pdf' },
+      { title: 'Swimlane Process Mapping', file: 'downloads/Swimlane_Diagrams.pdf' },
+    ];
+
+    let activeDesktop = 0;
+
+    // Desktop: Load template into iframe
+    function loadTemplate(index) {
+      const t = templates[index];
+      activeDesktop = index;
+
+      // Update iframe
+      const viewer = document.getElementById('pdf-viewer');
+      viewer.style.opacity = '0';
+      setTimeout(() => {
+        viewer.src = t.file;
+        viewer.style.opacity = '1';
+      }, 150);
+
+      // Update toolbar
+      document.getElementById('desktop-viewer-title').textContent = t.title;
+      document.getElementById('desktop-open-tab').href = t.file;
+      document.getElementById('desktop-download').href = t.file;
+
+      // Update active state
+      document.querySelectorAll('.desktop-card').forEach((card, i) => {
+        if (i === index) {
+          card.classList.add('active');
+        } else {
+          card.classList.remove('active');
+        }
+      });
+    }
+
+    // Mobile: Accordion toggle
+    function toggleMobileTemplate(index) {
+      const containers = document.querySelectorAll('.mobile-pdf-container');
+      const chevrons = document.querySelectorAll('.mobile-chevron');
+
+      containers.forEach((container, i) => {
+        if (i === index) {
+          const isOpen = container.classList.contains('open');
+          container.classList.toggle('open');
+          chevrons[i].style.transform = isOpen ? '' : 'rotate(180deg)';
+
+          // Lazy-load iframe on first open
+          if (!isOpen) {
+            const iframe = container.querySelector('.mobile-pdf-frame');
+            if (iframe && !iframe.src && iframe.dataset.src) {
+              iframe.src = iframe.dataset.src;
+            }
+          }
+        } else {
+          container.classList.remove('open');
+          chevrons[i].style.transform = '';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
