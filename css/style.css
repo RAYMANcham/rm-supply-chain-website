@@ -1,0 +1,97 @@
+/* RM Supply Chain Management - Custom Styles */
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ===== Hero Video Background ===== */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(30, 58, 95, 0.75);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Pause video on mobile to save data */
+@media (max-width: 768px) {
+  .hero-video {
+    display: none;
+  }
+  .hero-section {
+    background-color: #1e3a5f;
+  }
+}
+
+/* Card hover effect */
+.card-hover {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* File type badges */
+.badge-excel {
+  background-color: #16a34a;
+  color: white;
+}
+
+.badge-doc {
+  background-color: #2563eb;
+  color: white;
+}
+
+.badge-pdf {
+  background-color: #dc2626;
+  color: white;
+}
+
+/* Mobile menu animation */
+#mobile-menu {
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+#mobile-menu.open {
+  max-height: 400px;
+  opacity: 1;
+}
+
+/* Nav shadow on scroll */
+.nav-scrolled {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Selection color */
+::selection {
+  background-color: #1e3a5f;
+  color: white;
+}
