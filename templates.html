@@ -33,7 +33,7 @@
       transition: background-color 0.2s ease, border-color 0.2s ease;
     }
     .template-card.active {
-      background-color: #f8fafc;
+      background-color: #1f2937;
       border-left: 3px solid #1e3a5f;
     }
     .template-card:not(.active) {
@@ -111,70 +111,80 @@
   </nav>
 
   <!-- Page Header -->
-  <section class="bg-navy-900 text-white py-16 lg:py-20 px-6 lg:px-8">
-    <div class="max-w-7xl mx-auto">
-      <p class="text-sm font-semibold tracking-widest uppercase text-gray-400 mb-4">Resources</p>
-      <h1 class="text-4xl md:text-5xl font-bold mb-6">
-        Templates <span class="font-light italic">&amp; Resources</span>
-      </h1>
-      <div class="w-16 h-0.5 bg-white mb-6"></div>
-      <p class="text-lg text-gray-300 max-w-2xl">Practical frameworks for supply chain operations.</p>
+  <section class="hero-section bg-navy-900 text-white">
+    <!-- Video Background -->
+    <video autoplay muted loop playsinline class="hero-video">
+      <source src="images/188710-883612324_small.mp4" type="video/mp4">
+    </video>
+    <!-- Dark Overlay -->
+    <div class="hero-overlay"></div>
+
+    <!-- Hero Content -->
+    <div class="hero-content">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
+        <p class="text-sm font-semibold tracking-widest uppercase text-gray-400 mb-4">Resources</p>
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">
+          Templates <span class="font-light italic">&amp; Resources</span>
+        </h1>
+        <div class="w-16 h-0.5 bg-white mb-6"></div>
+        <p class="text-lg text-gray-300 max-w-2xl">Practical frameworks for supply chain operations.</p>
+      </div>
     </div>
   </section>
 
   <!-- ===================== DESKTOP: Two-Column Layout ===================== -->
-  <section class="hidden lg:block py-12 px-6 lg:px-8">
+  <section class="hidden lg:block py-12 px-6 lg:px-8 bg-black">
     <div class="max-w-7xl mx-auto flex gap-8" style="min-height: 700px;">
 
       <!-- Left Sidebar (30%) -->
       <aside class="w-[30%] flex-shrink-0">
         <div class="sticky top-24">
-          <p class="text-xs font-semibold tracking-widest uppercase text-gray-400 mb-6">Select a template</p>
+          <p class="text-xs font-semibold tracking-widest uppercase text-gray-500 mb-6">Select a template</p>
           <div class="space-y-1" id="desktop-template-list">
 
             <button onclick="loadTemplate(0, 'desktop')"
-                    class="template-card desktop-card active w-full text-left px-5 py-4 rounded-r-lg cursor-pointer hover:bg-gray-50">
+                    class="template-card desktop-card active w-full text-left px-5 py-4 rounded-r-lg cursor-pointer hover:bg-gray-800">
               <div class="flex items-center gap-3 mb-1">
                 <span class="badge-pdf text-[10px] font-semibold px-2 py-0.5 rounded-full flex-shrink-0">PDF</span>
-                <h3 class="text-sm font-semibold text-navy-900 truncate">S&amp;OP Framework Guide</h3>
+                <h3 class="text-sm font-semibold text-white truncate">S&amp;OP Framework Guide</h3>
               </div>
-              <p class="text-xs text-gray-500 ml-10">Collaborative business planning</p>
+              <p class="text-xs text-gray-400 ml-10">Collaborative business planning</p>
             </button>
 
             <button onclick="loadTemplate(1, 'desktop')"
-                    class="template-card desktop-card w-full text-left px-5 py-4 rounded-r-lg cursor-pointer hover:bg-gray-50">
+                    class="template-card desktop-card w-full text-left px-5 py-4 rounded-r-lg cursor-pointer hover:bg-gray-800">
               <div class="flex items-center gap-3 mb-1">
                 <span class="badge-pdf text-[10px] font-semibold px-2 py-0.5 rounded-full flex-shrink-0">PDF</span>
-                <h3 class="text-sm font-semibold text-navy-900 truncate">Employee Empowerment in Supply Chain</h3>
+                <h3 class="text-sm font-semibold text-white truncate">Employee Empowerment in Supply Chain</h3>
               </div>
-              <p class="text-xs text-gray-500 ml-10">Building autonomous teams</p>
+              <p class="text-xs text-gray-400 ml-10">Building autonomous teams</p>
             </button>
 
             <button onclick="loadTemplate(2, 'desktop')"
-                    class="template-card desktop-card w-full text-left px-5 py-4 rounded-r-lg cursor-pointer hover:bg-gray-50">
+                    class="template-card desktop-card w-full text-left px-5 py-4 rounded-r-lg cursor-pointer hover:bg-gray-800">
               <div class="flex items-center gap-3 mb-1">
                 <span class="badge-pdf text-[10px] font-semibold px-2 py-0.5 rounded-full flex-shrink-0">PDF</span>
-                <h3 class="text-sm font-semibold text-navy-900 truncate">KPI Selection &amp; Implementation</h3>
+                <h3 class="text-sm font-semibold text-white truncate">KPI Selection &amp; Implementation</h3>
               </div>
-              <p class="text-xs text-gray-500 ml-10">Measuring what matters</p>
+              <p class="text-xs text-gray-400 ml-10">Measuring what matters</p>
             </button>
 
             <button onclick="loadTemplate(3, 'desktop')"
-                    class="template-card desktop-card w-full text-left px-5 py-4 rounded-r-lg cursor-pointer hover:bg-gray-50">
+                    class="template-card desktop-card w-full text-left px-5 py-4 rounded-r-lg cursor-pointer hover:bg-gray-800">
               <div class="flex items-center gap-3 mb-1">
                 <span class="badge-pdf text-[10px] font-semibold px-2 py-0.5 rounded-full flex-shrink-0">PDF</span>
-                <h3 class="text-sm font-semibold text-navy-900 truncate">RACI Responsibility Matrix</h3>
+                <h3 class="text-sm font-semibold text-white truncate">RACI Responsibility Matrix</h3>
               </div>
-              <p class="text-xs text-gray-500 ml-10">Role clarity framework</p>
+              <p class="text-xs text-gray-400 ml-10">Role clarity framework</p>
             </button>
 
             <button onclick="loadTemplate(4, 'desktop')"
-                    class="template-card desktop-card w-full text-left px-5 py-4 rounded-r-lg cursor-pointer hover:bg-gray-50">
+                    class="template-card desktop-card w-full text-left px-5 py-4 rounded-r-lg cursor-pointer hover:bg-gray-800">
               <div class="flex items-center gap-3 mb-1">
                 <span class="badge-pdf text-[10px] font-semibold px-2 py-0.5 rounded-full flex-shrink-0">PDF</span>
-                <h3 class="text-sm font-semibold text-navy-900 truncate">Swimlane Process Mapping</h3>
+                <h3 class="text-sm font-semibold text-white truncate">Swimlane Process Mapping</h3>
               </div>
-              <p class="text-xs text-gray-500 ml-10">Cross-functional workflows</p>
+              <p class="text-xs text-gray-400 ml-10">Cross-functional workflows</p>
             </button>
 
           </div>
