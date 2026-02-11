@@ -27,6 +27,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Expertise card glow effect */
+    .expertise-card {
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.25s ease;
+    }
+    .expertise-card:hover {
+  border-color: rgba(100, 160, 220, 0.7) !important;
+  box-shadow: 0 0 30px rgba(100, 160, 220, 0.4), 0 0 60px rgba(100, 160, 220, 0.15);
+  transform: translateY(-2px);
+    }
+  </style>
 </head>
 <body class="bg-white text-gray-800 font-sans antialiased">
 
@@ -126,20 +137,48 @@
     </div>
   </section>
 
-  <!-- My Approach Section -->
-  <section class="py-24 lg:py-32 px-6 lg:px-8">
-    <div class="max-w-4xl mx-auto">
+  <!-- About & My Approach Split Section -->
+  <section class="grid lg:grid-cols-2">
+
+    <!-- Left Column: About (Navy Background) -->
+    <div class="bg-navy-900 py-24 lg:py-32 px-10 lg:px-16">
       <div class="mb-4">
-        <p class="text-sm font-semibold tracking-widest text-navy-900 uppercase">My Approach</p>
+        <p class="text-xs font-semibold tracking-widest uppercase text-gray-400">About</p>
+      </div>
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-8">
+        Built on Experience,<br>
+        <span class="font-light italic text-gray-300">Driven by Results</span>
+      </h2>
+      <div class="w-16 h-0.5 bg-white mb-10"></div>
+      <div class="space-y-6">
+        <p class="text-gray-300 text-lg leading-relaxed">
+          RM SCM is an independent supply chain consultancy with nearly a decade of experience leading projects across Europe and Asia. My work focuses on transforming operations into connected, data-driven ecosystems where strategy meets execution.
+        </p>
+        <p class="text-gray-300 text-lg leading-relaxed">
+          Whether it's improving S&OP, optimizing inventory, or aligning teams around shared goals, I help organizations bring clarity and structure to their supply chain challenges.
+        </p>
+      </div>
+    </div>
+
+    <!-- Right Column: My Approach (White Background) -->
+    <div class="bg-white py-24 lg:py-32 px-10 lg:px-16">
+      <div class="mb-4">
+        <p class="text-xs font-semibold tracking-widest uppercase text-navy-900">My Approach</p>
       </div>
       <h2 class="text-3xl md:text-4xl font-bold text-navy-900 mb-8">
         Practical. Data Driven. <span class="font-light italic">People Focused.</span>
       </h2>
       <div class="w-16 h-0.5 bg-navy-900 mb-10"></div>
-      <p class="text-lg lg:text-xl text-gray-600 leading-relaxed max-w-3xl">
-        Every project starts with understanding, not assumptions. I combine analytical precision with a clear sense of leadership and collaboration, helping teams adopt practical solutions that last beyond implementation.
-      </p>
+      <div class="space-y-6">
+        <p class="text-gray-600 text-lg leading-relaxed">
+          Every project starts with understanding, not assumptions. I combine analytical precision with a clear sense of leadership and collaboration, helping teams adopt practical solutions that last beyond implementation.
+        </p>
+        <p class="text-gray-600 text-lg leading-relaxed">
+          Because in the end, supply chain management is not about processes, but about people who make them work.
+        </p>
+      </div>
     </div>
+
   </section>
 
   <!-- Expertise Section -->
@@ -155,58 +194,66 @@
         </h2>
         <div class="w-16 h-0.5 bg-navy-900 mb-8"></div>
         <p class="text-lg text-gray-600 leading-relaxed">
-          I help organizations connect their supply chain strategy to real customer needs and market behavior.
+          I help organizations connect their supply chain strategy to real customer needs and market behavior. Every recommendation starts with understanding why customers buy, how markets move, and where execution breaks down. By bridging commercial strategy with operational capability, I help businesses:
         </p>
       </div>
 
       <!-- Expertise Cards -->
       <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
 
-        <div class="card-hover bg-white p-8 lg:p-10 rounded-lg border border-gray-100">
-          <div class="w-10 h-10 bg-navy-900 rounded flex items-center justify-center mb-6">
+        <div class="card-hover expertise-card bg-navy-900 p-8 lg:p-10 rounded-lg border border-navy-800">
+          <div class="w-10 h-10 bg-white/10 rounded flex items-center justify-center mb-6">
             <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
             </svg>
           </div>
-          <p class="text-gray-700 text-lg leading-relaxed">
+          <p class="text-gray-300 text-lg leading-relaxed">
             Translate customer insights into actionable supply chain strategies
           </p>
         </div>
 
-        <div class="card-hover bg-white p-8 lg:p-10 rounded-lg border border-gray-100">
-          <div class="w-10 h-10 bg-navy-900 rounded flex items-center justify-center mb-6">
+        <div class="card-hover expertise-card bg-navy-900 p-8 lg:p-10 rounded-lg border border-navy-800">
+          <div class="w-10 h-10 bg-white/10 rounded flex items-center justify-center mb-6">
             <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
             </svg>
           </div>
-          <p class="text-gray-700 text-lg leading-relaxed">
+          <p class="text-gray-300 text-lg leading-relaxed">
             Align leadership teams around shared goals and measurable outcomes
           </p>
         </div>
 
-        <div class="card-hover bg-white p-8 lg:p-10 rounded-lg border border-gray-100">
-          <div class="w-10 h-10 bg-navy-900 rounded flex items-center justify-center mb-6">
+        <div class="card-hover expertise-card bg-navy-900 p-8 lg:p-10 rounded-lg border border-navy-800">
+          <div class="w-10 h-10 bg-white/10 rounded flex items-center justify-center mb-6">
             <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zm0 8a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1v-2zm0 8a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1v-2z"/>
             </svg>
           </div>
-          <p class="text-gray-700 text-lg leading-relaxed">
-            Create dashboards that make KPI performance visible across the organization
+          <p class="text-gray-300 text-lg leading-relaxed">
+            Create dashboards that make KPI performance visible across the organization, enabling everyone to steer in the right direction
           </p>
         </div>
 
-        <div class="card-hover bg-white p-8 lg:p-10 rounded-lg border border-gray-100">
-          <div class="w-10 h-10 bg-navy-900 rounded flex items-center justify-center mb-6">
+        <div class="card-hover expertise-card bg-navy-900 p-8 lg:p-10 rounded-lg border border-navy-800">
+          <div class="w-10 h-10 bg-white/10 rounded flex items-center justify-center mb-6">
             <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
             </svg>
           </div>
-          <p class="text-gray-700 text-lg leading-relaxed">
+          <p class="text-gray-300 text-lg leading-relaxed">
             Continuously adapt to shifting market conditions with data-driven decision making
           </p>
         </div>
 
       </div>
+
+      <!-- Closing Statement -->
+      <div class="mt-12">
+        <p class="text-lg text-gray-500 text-center">
+          The result is a supply chain that doesn't just operate efficiently — it drives competitive advantage.
+        </p>
+      </div>
+
     </div>
   </section>
 
